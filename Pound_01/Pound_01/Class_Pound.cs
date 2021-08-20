@@ -5,18 +5,84 @@ public class Pound
     int space;
     public Animal[] database;
 
+
     public Pound()
     {
         database = new Animal[capacity];
         space = 0;
     }
+
+
+    public int GetCapacity()
+    {
+        return capacity;
+    }
+
+
     public int GetSpace()
     {
         return space;
     }
+
+
+    public void GetStatus()
+    { 
+
+        if (space == capacity)
+            Console.WriteLine($"Currently there are {space} animals. Pound is full and cannot take in more animals.");
+        else if (space == 0)
+            Console.WriteLine("Curretnly the pound is empty.");
+        else
+            Console.WriteLine($"Currently there are {space} animals in the pound's database.");
+    }
+
+
+    public void Add()
+    {
+        Console.WriteLine("What do you want to add?");
+        string pet_name = Console.ReadLine();
+        try
+        {
+            database[Find_Space()] = new Animal(pet_name);
+            Console.WriteLine($"You have added new pet to the pound's database.");
+            space++;
+        }
+        catch (IndexOutOfRangeException)
+        {
+            Console.WriteLine("Pound's capacity is full.");
+        }
+    }
+
+
+    int Find_Space()
+    {
+        for (int slot = 0; slot < database.Length; slot++)
+        {
+            if (database[slot] == null)
+                return slot;
+        }
+        return -1;
+    }
+
+
+    public void Delete()
+    {
+        Console.WriteLine("What do you want to delete?");
+        string pet_name = Console.ReadLine();
+        try
+        {
+            database[Find_Pet(pet_name)] = null;
+            Console.WriteLine($"You have deleted {pet_name} from the pound's database.");
+            space--;
+        }
+        catch (IndexOutOfRangeException)
+        {
+            Console.WriteLine($"There is not any {pet_name} in the database.");
+        }
+    }
+
+
     int Find_Pet(string pet_name)
-    // method checks if there is a matching string in the database array and returns [value] for the object that holds wanted string
-    // returns -1 if it fails to be handled by IndexOutOfRangeException in Del()
     {
         for (int slot = 0; slot < database.Length; slot++)
         {
@@ -32,40 +98,4 @@ public class Pound
         }
         return -1;
     }
-    int Find_Space()
-    {
-        for (int slot = 0; slot < database.Length; slot++)
-        {
-            if (database[slot] == null)
-                return slot;
-        }
-        return -1;
-    }
-    public void Add(string pet_name)
-    {
-        try
-        {
-            database[Find_Space()] = new Animal(pet_name);
-            space++;
-            Console.WriteLine($"You have added new pet to the pound's database.");
-        }
-        catch (IndexOutOfRangeException)
-        {
-            Console.WriteLine("Pound's capacity is full.");
-        }
-    }
-    public void Del(string pet_name)
-    {
-        try
-        {
-            database[Find_Pet(pet_name)] = null;
-            space--;
-            Console.WriteLine($"You have deleted {pet_name} from the pound's database.");
-        }
-        catch (IndexOutOfRangeException)
-        {
-            Console.WriteLine($"There is not any {pet_name} in the database.");
-        }
-    }
-
 }

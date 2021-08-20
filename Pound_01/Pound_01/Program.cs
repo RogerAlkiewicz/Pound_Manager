@@ -27,37 +27,22 @@ class Program
             {
                 case "add":
                     {
-                        Console.WriteLine("What do you want to add?");
-                        read = Console.ReadLine();
-                        pound.Add(read);
+                        pound.Add();
                         break;
                     }
                 case "del":
                     {
-                        Console.WriteLine("What do you want to delete?");
-                        read = Console.ReadLine();
-                        pound.Del(read);
+                        pound.Delete();
                         break;
                     }
                 case "status":
                     {
-                        // based on "capacity" field value algorithm displays database's current status
-                        if (pound.GetSpace() == pound.database.Length)
-                            Console.WriteLine($"Currently there are {pound.GetSpace()} animals. Pound is full and cannot take in more animals.");
-                        else if (pound.GetSpace() == 0)
-                            Console.WriteLine("Curretnly the pound is empty.");
-                        else
-                            Console.WriteLine($"Currently there are {pound.GetSpace()} animals in the pound's database.");
-                        break;
-                    }
-                case "list":
-                    {
-                        // wyświetla listę wszystkich zwierząt w schronisku
+                        pound.GetStatus();
                         break;
                     }
                 case "exit":
                     {
-                        Console.WriteLine("\nGoodbye!");
+                        Console.WriteLine("Goodbye!\n");
                         leave = true;
                         break;
                     }
