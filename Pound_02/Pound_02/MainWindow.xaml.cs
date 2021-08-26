@@ -25,13 +25,23 @@ namespace Pound_02
             InitializeComponent();
         }
 
-        private void ButtonAddName_Click(object sender, RoutedEventArgs e)
+        private void ButtonAddPet_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtName.Text) && !FirstNames.Items.Contains(txtName.Text))
+            if (!string.IsNullOrWhiteSpace(txtPet.Text))
             {
-                FirstNames.Items.Add(txtName.Text);
-                txtName.Clear();
+                Pets.Items.Add(txtPet.Text);
+                txtPet.Clear();
             }
+        }
+
+        private void ButtonDelPet_Click(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i <= Pets.Items.Count - 1; i++)
+                if (Pets.Items[i].Equals(txtPet.Text))
+                {
+                    Pets.Items.Remove(Pets.Items[i]);
+                    break;
+                }
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pound_02"
         mc:Ignorable="d"
-        Title="MainWindow" Height="180" Width="260">
+        Title="Pound Manager" Height="200" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -17,12 +17,13 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Label>Names</Label>
-        <ListBox Grid.Row="1" x:Name="FirstNames" />
+        <Label Margin="3,0,0,0">Registered pets</Label>
+        <ListBox Grid.Row="1" x:Name="Pets" Margin="5,0,5,5" />
 
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="5,0,0,0">
-            <TextBox x:Name="txtName" />
-            <Button x:Name="ButtonAddName" Margin="0,5,0,0" Click="ButtonAddName_Click">Add Name</Button>
+            <TextBox x:Name="txtPet" />
+            <Button x:Name="ButtonAddPet" Margin="0,5,0,0" Click="ButtonAddPet_Click">Add</Button>
+            <Button x:Name="ButtonDelName" Margin="0,5,0,0" Click="ButtonDelPet_Click">Delete</Button>
         </StackPanel>
 
     </Grid>
